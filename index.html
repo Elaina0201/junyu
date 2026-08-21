@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>珺裕 | 品质软装品牌</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        :root {
+            --primary: #222831;
+            --accent: #a68c6c;
+            --light: #f8f7f4;
+            --gray: #666666;
+            --white: #ffffff;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        /* 导航栏 */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            background-color: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .nav-links {
+            display: flex;
+            gap: 48px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        /* 首屏Banner */
+        .hero {
+            height: 100vh;
+            background: url("/junyu/1.PNG") center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,0,0,0.35);
+        }
+        .hero-content {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            color: var(--white);
+        }
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 500;
+            letter-spacing: 8px;
+            margin-bottom:20px;
+        }
+        .hero-content p {
+            font-size:18px;
+            max-width: 520px;
+            opacity:0.9;
+            margin-bottom:36px;
+        }
+        .btn {
+            display: inline-block;
+            padding:14px 42px;
+            border:1px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing:2px;
+            transition:0.3s ease;
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        /* 通用容器 */
+        .container {
+            max-width:1400px;
+            margin:0 auto;
+            padding:100px 40px;
+        }
+        .section-title {
+            text-align:center;
+            margin-bottom:70px;
+        }
+        .section-title h2 {
+            font-size:36px;
+            font-weight:500;
+            letter-spacing:4px;
+            color:var(--primary);
+            margin-bottom:12px;
+        }
+        .section-title .line {
+            width:60px;
+            height:2px;
+            background-color:var(--accent);
+            margin:0 auto;
+        }
+        /* 品牌介绍 */
+        .about-wrap {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:70px;
+            align-items:center;
+        }
+        .about-img img {
+            width:100%;
+            height:auto;
+            display:block;
+        }
+        .about-text h3 {
+            font-size:26px;
+            font-weight:500;
+            margin-bottom:24px;
+            letter-spacing:2px;
+        }
+        .about-text p {
+            color:var(--gray);
+            font-size:16px;
+            margin-bottom:16px;
+        }
+        /* 产品系列 */
+        .product-grid {
+            display:grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap:32px;
+        }
+        .product-card {
+            background-color:var(--white);
+            overflow:hidden;
+            transition:0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow:0 12px 30px rgba(0,0,0,0.08);
+        }
+        .product-card img {
+            width:100%;
+            height:320px;
+            object-fit:cover;
+        }
+        .product-info {
+            padding:24px;
+        }
+        .product-info h4 {
+            font-size:18px;
+            font-weight:500;
+            margin-bottom:8px;
+            letter-spacing:1px;
+        }
+        .product-info p {
+            color:var(--gray);
+            font-size:14px;
+        }
+        /* 核心优势 */
+        .advantage-wrap {
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:30px;
+        }
+        .advantage-item {
+            text-align:center;
+            padding:30px 20px;
+        }
+        .advantage-item h4 {
+            font-size:18px;
+            margin:16px 0 10px;
+            letter-spacing:1px;
+        }
+        .advantage-item p {
+            font-size:14px;
+            color:var(--gray);
+        }
+        /* 案例实景 */
+        .case-grid {
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:16px;
+        }
+        .case-grid img {
+            width:100%;
+            height:240px;
+            object-fit:cover;
+        }
+        /* 页脚 */
+        footer {
+            background-color:var(--primary);
+            color:#cccccc;
+            padding:70px 40px 30px;
+        }
+        .footer-wrap {
+            max-width:1400px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:2fr 1fr 1fr 1fr;
+            gap:50px;
+        }
+        .footer-logo {
+            font-size:26px;
+            color:var(--white);
+            letter-spacing:4px;
+            margin-bottom:20px;
+        }
+        footer h5 {
+            color:var(--white);
+            font-size:16px;
+            margin-bottom:20px;
+            letter-spacing:1px;
+        }
+        footer ul {
+            list-style:none;
+        }
+        footer ul li {
+            margin-bottom:10px;
+        }
+        footer ul li a {
+            color:#cccccc;
+            text-decoration:none;
+            transition:0.2s;
+        }
+        footer ul li a:hover {
+            color:var(--accent);
+        }
+        .copyright {
+            max-width:1400px;
+            margin:60px auto 0;
+            padding-top:30px;
+            border-top:1px solid #3a404a;
+            text-align:center;
+            font-size:13px;
+        }
+        /* 移动端适配 */
+        @media (max-width:1024px) {
+            .about-wrap {
+                grid-template-columns:1fr;
+            }
+            .product-grid {
+                grid-template-columns:repeat(2,1fr);
+            }
+            .advantage-wrap {
+                grid-template-columns:repeat(2,1fr);
+            }
+            .case-grid {
+                grid-template-columns:repeat(2,1fr);
+            }
+            .footer-wrap {
+                grid-template-columns:1fr 1fr;
+            }
+            .hero-content h1 {
+                font-size:42px;
+            }
+            .nav-links {
+                gap:24px;
+            }
+        }
+        @media (max-width:768px) {
+            .nav-links {
+                display:none;
+            }
+            .product-grid {
+                grid-template-columns:1fr;
+            }
+            .advantage-wrap {
+                grid-template-columns:1fr;
+            }
+            .case-grid {
+                grid-template-columns:1fr;
+            }
+            .footer-wrap {
+                grid-template-columns:1fr;
+            }
+            .hero-content h1 {
+                font-size:32px;
+            }
+            .nav-wrap {
+                padding:16px 20px;
+            }
+            .container {
+                padding:60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--导航-->
+    <header>
+        <div class="nav-wrap">
+            <a href="#" class="logo">珺<span>裕</span></a>
+            <nav class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#about">品牌</a>
+                <a href="#product">产品</a>
+                <a href="#advantage">优势</a>
+                <a href="#case">案例</a>
+                <a href="#contact">联系我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <!--首屏-->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>珺裕 · 品质软装</h1>
+            <p>甄选优质面料，匠心工艺，用光与织物重塑居住空间美学，为每一个家打造高级静谧质感。</p>
+            <a href="#product" class="btn">浏览系列产品</a>
+        </div>
+    </section>
+
+    <!--品牌介绍-->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于珺裕</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-wrap">
+                <div class="about-img">
+                    <img src="/junyu/2.png" alt="高端家居窗帘实景">
+                </div>
+                <div class="about-text">
+                    <h3>织物美学，悦见生活本真</h3>
+                    <p>珺裕专注品质软装研发、设计与定制。坚持面料甄选，注重肌理、遮光、垂感与环保，融合现代简约与东方雅致审美。</p>
+                    <p>从住宅私宅到商业空间，兼顾美学表现与实用性能，拒绝流水线廉价感，把高级氛围感带入千家万户。</p>
+                    <p>从设计、选料、裁剪到安装落地，全链路把控品质，给客户一体化窗帘软装解决方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--产品系列-->
+    <section id="product" style="background:#ffffff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>产品系列</h2>
+                <div class="line"></div>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="/junyu/8.png" alt="遮光">
+                    <div class="product-info">
+                        <h4>全遮光系列</h4>
+                        <p>高密遮光面料，静谧睡眠，卧室优选</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/junyu/3.png" alt="纱帘">
+                    <div class="product-info">
+                        <h4>柔光纱帘系列</h4>
+                        <p>通透柔光，柔和过滤自然光</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="/junyu/4.png" alt="轻奢定制窗帘">
+                    <div class="product-info">
+                        <h4>轻奢定制系列</h4>
+                        <p>高端肌理面料，大宅私宅定制</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--核心优势-->
+    <section id="advantage">
+        <div class="container">
+            <div class="section-title">
+                <h2>品牌核心优势</h2>
+                <div class="line"></div>
+            </div>
+            <div class="advantage-wrap">
+                <div class="advantage-item">
+                    <h4>精选面料</h4>
+                    <p>环保材质，垂感优秀，耐晒不易褪色</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>匠心工艺</h4>
+                    <p>精细缝纫，立体褶皱，做工考究</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>上门定制</h4>
+                    <p>测量、设计、安装一站式服务</p>
+                </div>
+                <div class="advantage-item">
+                    <h4>多元风格</h4>
+                    <p>简约、轻奢、新中式多种风格可选</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--实景案例-->
+    <section id="case" style="background:#ffffff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>实景案例</h2>
+                <div class="line"></div>
+            </div>
+            <div class="case-grid">
+                <img src="/junyu/5.png" alt="案例1">
+                <img src="/junyu/6.png" alt="案例2">
+                <img src="/junyu/7.png" alt="案例3">
+            </div>
+        </div>
+    </section>
+
+    <!--页脚联系-->
+    <footer id="contact">
+        <div class="footer-wrap">
+            <div>
+                <div class="footer-logo">珺裕</div>
+                <p>珺裕品质软装，专注软装窗帘定制，以织物赋予家温度与格调。</p>
+            </div>
+            <div>
+                <h5>快速导航</h5>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">品牌介绍</a></li>
+                    <li><a href="#product">产品系列</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>服务支持</h5>
+                <ul>
+                    <li><a href="#">上门测量</a></li>
+                    <li><a href="#">定制方案</a></li>
+                    <li><a href="#">售后维护</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>联系我们</h5>
+                <ul>
+                    <li><a href="#">咨询热线：13205124846</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 珺裕 版权所有
+        </div>
+    </footer>
+</body>
+</html>
